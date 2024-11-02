@@ -1,8 +1,6 @@
 import requests
 import json
 
-from promts import prepare_prompt
-from input_data import reviews
 
 
 def evaluate_reviews_with_llm(prompt):
@@ -27,4 +25,3 @@ def evaluate_reviews_with_llm(prompt):
     else:
         return f"Error: {response.status_code} - {response.text}"
     
-print(evaluate_reviews_with_llm(prepare_prompt(reviews)))
