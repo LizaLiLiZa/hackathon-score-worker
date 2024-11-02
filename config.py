@@ -10,12 +10,13 @@ class Settings(BaseSettings):
     token_lifetime: int = 15
     system_username: str = 'admin'
     system_pwd: str = 'admin'
-    system_email: EmailStr = ''
+    system_email: EmailStr = 'ernest@elitvinenko.tech'
     domain: str
-    static_url: str
+    static_url: str = ""
 
     class Config:
         env_file = '.env'
+
 
 
 Config = Settings()
