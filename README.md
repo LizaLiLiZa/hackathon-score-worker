@@ -1,0 +1,1 @@
+# hackathon-score-worker
