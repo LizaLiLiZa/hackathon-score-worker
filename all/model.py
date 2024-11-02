@@ -9,7 +9,7 @@ def evaluate_reviews_with_llm(prompt):
         "prompt": [prompt],
         "apply_chat_template": True,
         "system_prompt": "You are a helpful assistant.",
-        "max_tokens": 400,
+        "max_tokens": 1000,
         "n": 1,
         "temperature": 0.7
     }
