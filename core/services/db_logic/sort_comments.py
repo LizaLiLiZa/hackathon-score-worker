@@ -1,6 +1,6 @@
 import json
 import os
-from core.services.db_logic.all_comments import get_person_comments
+from core.services.db_logic.all_comments import get_ID_under_review_comments
 from core.services.db_logic.all_comments import filtr_com
 from core.services.prompts.all_prompts import short_prompt
 from core.services.moduls.modul import short_review
@@ -10,11 +10,20 @@ def add_sort_comments_db(id_to, id_from, gen_comm):
         with open("./core/db/sort_comments.json", "w", encoding="utf-8") as f:
             json.dump([], f)
     with open("./core/db/sort_comments.json", "r+", encoding="utf-8") as f:
-        data = json.load(f) #get_sort_comments_db(id_to)
+        data = json.load(f)
+        update = False
+        for i in range(len(data)):
+            if data[i]["ID_reviewer"] == id_to and data[i]["ID_under_review"] == id_from:
+                data[i] = {"ID_reviewer": id_to, "ID_under_review": id_from, "review": gen_comm}
+                update = True
+                break
+
+        if not update:
+            data.append({"ID_reviewer": id_to, "ID_under_review": id_from, "review": gen_comm})
         print(data)
-        data.append({"ID_reviewer": id_to, "ID_under_review": id_from, "review": gen_comm})
         f.seek(0)
         json.dump(data, f, indent=4, ensure_ascii=False)
+        f.truncate() 
     with open("./core/db/sort_comments.json", "r", encoding="utf-8") as f:
         print(json.load(f))
 

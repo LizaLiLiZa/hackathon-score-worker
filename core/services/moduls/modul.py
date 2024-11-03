@@ -1,7 +1,7 @@
 import json
 import requests
 from pydantic import BaseModel
-from core.services.db_logic.all_comments import get_person_comments
+from core.services.db_logic.all_comments import get_ID_under_review_comments
 from core.services.db_logic.all_comments import filtr_com
 from core.services.prompts.all_prompts import short_prompt
 
