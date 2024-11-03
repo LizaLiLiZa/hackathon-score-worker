@@ -1,23 +1,94 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Editor directories and files
+.vscode/
+.idea/
 
-# testing
-/coverage
+# Testing
+coverage/
+tests/
+*.log
 
-# production
-/build
-
-# misc
+# System files
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+Thumbs.db
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+.cache
+
+# Build output
+build/
+dist/
+
+# IDE specific files
+*.suo
+*.user
+*.sln
+*.tmp
+*.log
+*.obj
+*.pch
+*.ilk
+*.pdb
+*.exp
+*.lib
+*.res
+*.tlog
+*.tlb
+*.bak
+*.suo
+*.sln
+*.vspscc
+*.vssscc
+*.ncb
+*.sdf
+*.suo
+*.sln
+*.pidb
+*.pdb
+*.scc
+
+# User specific files
+.env
+.env.*
+
+# Package managers
+package-lock.json
+yarn.lock
+
+# IDE settings
+.editorconfig
+
+# Temporary files
+*.swp
+*.bak
+*~
+
+# Logs
+logs/
+*.log
+
+# Compiled files
+*.js
+*.css
+*.html
+
+# Other temporary files
+.git/
+.svn/
+.hg/
+.npmrc
+.npmignore
+.travis.yml
+.editorconfig
