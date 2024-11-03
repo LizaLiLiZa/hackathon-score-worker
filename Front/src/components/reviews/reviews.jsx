@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import "./style/style.css";
-import Kittens from "./../../Img/kittens.svg"; 
+import Kittens from "./../../Img/kittens.svg";
+import axios from 'axios';
 
 function Reviews() {
     const [userInput, setUserInput] = useState('');
     const [criteriaInput, setCriteriaInput] = useState('');
     const [useDefaultData, setUseDefaultData] = useState(false);
     const [output, setOutput] = useState('');
+    const [data, setData] = useState([])
 
     const handleUserInput = (event) => {
         setUserInput(event.target.value);
@@ -25,37 +27,26 @@ function Reviews() {
         }
     };
 
+    
+    // Запрос на отправку значений
     const handleSubmit = async () => {
         try {
-            // Запрос на отправку значений
-            const response = await fetch('http://127.0.0.1:8000/', { // Замените '/api/send-data' на ваш реальный URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    idFrom: userInput,
-                    categories: criteriaInput,
-                }),
-            });
 
-            if (!response.ok) {
+            const url = `http://127.0.0.1:8000/categories/${userInput}/${criteriaInput}`; // Используем encodeURIComponent для кодирования критериев
+
+            const response = await axios.get(url);
+            // await fetch(url, { // Используем GET-запрос
+            //     method: 'GET',
+            // })
+                    // .then((response) => response.json());
+            
+            console.log(response.data);
+            if (!response.status === 200) {
                 throw new Error('Ошибка при отправке данных');
             }
-
-    // Получение отзыва с сервера
-            const data = await fetch('http://127.0.0.1:8000/', { // Замените '/api/get-text' на ваш реальный URL
-        method: 'GET',
-            });
-
-            if (!data.ok) {
-                throw new Error('Ошибка при получении текста');
-            }
-
-            const text = await data.text();
-            setOutput(text);
+            setOutput(response.data);
         } catch (error) {
-            console.error('Ошибка:', error);
+            console.error('Ошибка:', error.message);
             setOutput('Произошла ошибка. Попробуйте снова.');
         }
     };

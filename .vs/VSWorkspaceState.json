@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Front"
+    "\\Front\\src",
+    "\\Front\\src\\components",
+    "\\Front\\src\\components\\reviews"
   ],
   "SelectedNode": "\\Front",
   "PreviewInSolutionExplorer": false

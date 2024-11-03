@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./style/style.css";
 import Kittens from "./../../Img/kittens.svg";
+import axios from 'axios';
 
 function Main() {
     const [idToInput, setIdToInput] = useState('');
@@ -19,11 +20,24 @@ function Main() {
         setReviewInput(event.target.value);
     };
 
+    const handleSubmit = async () => {
 
-    const handleSubmit = () => {
-        // Обработка ввода пользователя и критериев
-        // ... (ваш код для обработки данных)
+            // Формирование URL
+        const url = `http://127.0.0.1:8000/new-comment`;
+        try {
+        const response = await axios.post(url, {
+            ID_reviewer: idToInput,
+            ID_under_review: idFromInput,
+            review: reviewInput
+        });
 
+
+            if (!response.status === 200) {
+                throw new Error('Ошибка при отправке данных');
+            }
+        } catch (e) {
+            console.log(e.message);
+        } 
 
     };
 
@@ -67,8 +81,8 @@ function Main() {
                 <button id="submitButton" onClick={handleSubmit}>
                     Отправить
                 </button>
+
             </div>
-            
             <div className="diamonds"> {/* Контейнер для ромбиков */}
                 <div className="diamond" style={{ top: '5%', left: '5%', width: '20px', height: '20px' }}></div>
                 <div className="diamond" style={{ top: '15%', left: '10%', width: '15px', height: '15px' }}></div>
