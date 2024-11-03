@@ -1,0 +1,33 @@
+import random
+import time
+import json
+
+def random_date(start, end, prop):
+    return str_time_prop(start, end, '%m/%d/%Y', prop)
+
+def str_time_prop(start, end, time_format, prop):
+    stime = time.mktime(time.strptime(start, time_format))
+    etime = time.mktime(time.strptime(end, time_format))
+    ptime = stime + prop * (etime - stime)
+    return time.strftime(time_format, time.localtime(ptime))
+
+rd = random_date("1/1/2018", "4/11/2024", random.random())
+print(rd)
+
+def rewrite_date_to_review(filepath):
+    with open(filepath, "r", encoding="utf-8") as f:
+        reviews = json.load(f)
+
+    reviews_with_date = []
+
+    for review in reviews:
+
+        review['date'] = random_date("1/1/2019", "4/11/2024", random.random())
+        reviews_with_date.append(review)
+
+    with open("review_dataset_with_date.json", "w", encoding="utf-8") as g:
+        json.dump(reviews_with_date, g, indent=4, ensure_ascii=False) 
+
+    return None  
+
+print (rewrite_date_to_review(r"C:\Users\pomaz\Documents\GitHub\hackathon-score-worker\all\sample_reviews.json"))
