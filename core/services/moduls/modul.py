@@ -19,10 +19,9 @@ def short_review(prompt):
         "system_prompt": "You are a smart assistant who should evaluate the personal qualities of employees based on reviews",
         "max_tokens": 1000,
         "n": 1,
-        "temperature": 0.89,
-        # "lenght_penalty": 0.8,
-        #"seed": 42,  # для тестирования
-        "schema": Review.model_json_schema(),
+        "temperature": 0.4,
+        "length_penalty": 1.5,
+        "seed": 42,  # для тестирования
     }
 
     headers = {
@@ -35,7 +34,7 @@ def short_review(prompt):
         return response.json()
     else:
         return f"Error: {response.status_code} - {response.text}"
-    
+
 
 def evaluate_reviews_with_llm(prompt):
     url = "https://vk-scoreworker-case-backup.olymp.innopolis.university/generate"

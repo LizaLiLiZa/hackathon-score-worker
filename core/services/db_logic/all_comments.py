@@ -19,10 +19,14 @@ def get_ID_under_review_comments(id_to):
     with open("./core/db/all_comments.json", "r+", encoding="utf-8") as f:
         data = json.load(f)
         array = []
+        users = []
         for i in data:
             if i["ID_under_review"] == id_to:
                 array.append(i)
-        return array
+                if i["ID_reviewer"] not in users:
+                    users.append(i["ID_reviewer"])
+
+        return array, users
 
 def get_ID_review_comment(id_to, id_from):
     if not os.path.exists("./core/db/all_comments.json"):
@@ -55,7 +59,7 @@ def filtr_com(reviews):
         reviewer_id = review["ID_reviewer"]
         if reviewer_id in merged_reviews:
             # Объединяем отзывы, добавляя новый текст к существующему
-            merged_reviews[reviewer_id]["review"] += "\n" + review["review"]
+            merged_reviews[reviewer_id]["review"] += "\n" + review["review"] + " - " + str(review["data"])
         else:
             # Если ID_reviewer еще не встречался, добавляем отзыв в словарь
             merged_reviews[reviewer_id] = review

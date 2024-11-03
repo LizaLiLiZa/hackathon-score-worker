@@ -37,18 +37,22 @@ def get_info():
 @router.get("/categories/{id_to}/{com}")
 def get_comments(id_to: int, com: str):
     comments_data = get_comments_under_review_db(id_to)
-    if len(comments_data) == 0:
-        data = get_ID_under_review_comments(id_to)
+    data, users = get_ID_under_review_comments(id_to)
+    if len(comments_data) == 0 or len(comments_data) != len(users):
         if len(data) == 0:
             raise HTTPException(status_code=404, detail="Нет данных в бд")
         filtered_data = filtr_com(data)
-        
+
+        print()
         for comment in filtered_data:
             print(comment)
             print()
-            prompt = short_prompt(comment)
+            prompt = short_prompt(comment)            
             try:
-                review_response = json.loads(short_review(prompt))
+                
+                review_response = short_review(prompt)
+                review_response = {"ID_reviewer": comment["ID_reviewer"], "ID_under_review": comment["ID_under_review"], "review": review_response}
+
                 comments_data.append(review_response)
                 add_sort_comments_db(review_response["ID_reviewer"], review_response["ID_under_review"], review_response["review"])
 
@@ -56,7 +60,7 @@ def get_comments(id_to: int, com: str):
                 print(f"Произошла ошибка: {e}")
                 raise HTTPException(status_code=500, detail="Невозможно преобразовать данные")
     prompt = prepare_prompt(comments_data, com)
-    return evaluate_reviews_with_llm(prompt)        
+    return evaluate_reviews_with_llm(prompt)
 
 
 @router.post("/new-comment")

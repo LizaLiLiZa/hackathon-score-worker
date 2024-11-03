@@ -2,31 +2,26 @@
     {
         "ID_reviewer": 4624,
         "ID_under_review": 6135,
-        "review": "honest, polite, respectful, professional, responsible"
+        "review": "К [ИМЯ] можно обратиться по любому вопросу, отличительная черта - вежливость, мягкость, интеллигентность и высокий уровень профессионализма."
     },
     {
         "ID_reviewer": 325,
         "ID_under_review": 6135,
-        "review": "Хороший специалист, трудолюбивый и старательный"
+        "review": "Хороший специалист"
     },
     {
         "ID_reviewer": 28,
         "ID_under_review": 6135,
-        "review": "Проявляет тяготение к решению проблем. "
+        "review": "Нейтральный отзыв"
     },
     {
         "ID_reviewer": 59073,
         "ID_under_review": 6135,
-        "review": "[ИМЯ] demonstrates excellent soft skills, including constructive interaction, teamwork, result-oriented approach, openness to dialogue, and seeking effective solutions"
+        "review": "[ИМЯ] - конструктивный сотрудник, умеющий работать в команде, нацеленный на результат, открытый к диалогу и поиск эффективных решений."
     },
     {
         "ID_reviewer": 475,
         "ID_under_review": 6135,
-        "review": "Классный и сильный программист, общительный и добросовестный, недополучает"
-    },
-    {
-        "ID_reviewer": 1,
-        "ID_under_review": 2,
-        "review": "Он очень старательный и трудолюбивый"
+        "review": "Классный человек, отличный программист, достоин повышения зарплаты."
     }
 ]
