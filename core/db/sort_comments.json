@@ -2,126 +2,31 @@
     {
         "ID_reviewer": 4624,
         "ID_under_review": 6135,
-        "review": "[ИМЯ] is a professional with excellent soft skills, including politeness, gentleness, and intelligence while maintaining a high level of expertise. All interactions are a pleasure and every query receives a thoughtful and logical response."
+        "review": "honest, polite, respectful, professional, responsible"
     },
     {
         "ID_reviewer": 325,
         "ID_under_review": 6135,
-        "review": "Хороший специалист"
+        "review": "Хороший специалист, трудолюбивый и старательный"
     },
     {
         "ID_reviewer": 28,
         "ID_under_review": 6135,
-        "review": "Want to see more focus on getting things done rather than holding back."
+        "review": "Проявляет тяготение к решению проблем. "
     },
     {
         "ID_reviewer": 59073,
         "ID_under_review": 6135,
-        "review": "[ИМЯ], thanks for the constructive interaction, teamwork and focus on results, openness to dialogue, and the search for effective solutions."
+        "review": "[ИМЯ] demonstrates excellent soft skills, including constructive interaction, teamwork, result-oriented approach, openness to dialogue, and seeking effective solutions"
     },
     {
         "ID_reviewer": 475,
         "ID_under_review": 6135,
-        "review": "Oddly enough, the review you provided doesn't need to be shortened and is already quite clear in its assessment of the person's soft skills."
+        "review": "Классный и сильный программист, общительный и добросовестный, недополучает"
     },
     {
-        "ID_reviewer": 4624,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ] is a consummate professional with excellent soft skills. They are courteous, soft-spoken, and intelligent, yet firmly assert their interests when necessary. Their professionalism is unparalleled, and I always appreciate interacting with them."
-    },
-    {
-        "ID_reviewer": 325,
-        "ID_under_review": 6135,
-        "review": "Good specialist."
-    },
-    {
-        "ID_reviewer": 28,
-        "ID_under_review": 6135,
-        "review": "гнетет безадресная критика, 欲 не до конца понятная"
-    },
-    {
-        "ID_reviewer": 59073,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ], appreciate the constructive interaction,团队合作和结果导向，开放的对话和寻求有效解决方案"
-    },
-    {
-        "ID_reviewer": 475,
-        "ID_under_review": 6135,
-        "review": "He is the best programmer ever! and a great person! He definitely under-earns, needs a salary increase!"
-    },
-    {
-        "ID_reviewer": 4624,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ] is a highly professional, polite, and intelligent colleague who can be relied upon for any questions. Every interaction is a pleasure, with clear logical explanations provided for any requests."
-    },
-    {
-        "ID_reviewer": 325,
-        "ID_under_review": 6135,
-        "review": "He is very good specialist"
-    },
-    {
-        "ID_reviewer": 28,
-        "ID_under_review": 6135,
-        "review": "The reviewer feels that the employee focuses too much on avoiding mistakes rather than achieving results."
-    },
-    {
-        "ID_reviewer": 59073,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ] thank you for constructive interaction, teamwork, and focus on results, openness to dialogue, and seeking effective solutions."
-    },
-    {
-        "ID_reviewer": 475,
-        "ID_under_review": 6135,
-        "review": "лучший программист эвер! и классный человек! однозначно недополучает, нужно поднимать зп!"
-    },
-    {
-        "ID_reviewer": 4624,
-        "ID_under_review": 6135,
-        "review": "duceuent, intelligent, proactive and great at issue explanation and resolution"
-    },
-    {
-        "ID_reviewer": 325,
-        "ID_under_review": 6135,
-        "review": "Хорош"
-    },
-    {
-        "ID_reviewer": 28,
-        "ID_under_review": 6135,
-        "review": "He could benefit from being more goal-oriented and focused on finding solutions rather than obstacles."
-    },
-    {
-        "ID_reviewer": 59073,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ], thank you for your constructive interaction, teamwork, and focus on results, openness to dialogue, and the search for solutions"
-    },
-    {
-        "ID_reviewer": 475,
-        "ID_under_review": 6135,
-        "review": "лучший программист и классный человек. однозначно недополучает, нужно поднимать зп!"
-    },
-    {
-        "ID_reviewer": 4624,
-        "ID_under_review": 6135,
-        "review": "Всегда можно обратиться с любым вопросом, отличительная черта - вежливость, мягкость и интеллигентность при высоком уровне профессионализма."
-    },
-    {
-        "ID_reviewer": 325,
-        "ID_under_review": 6135,
-        "review": "Хороший специалист"
-    },
-    {
-        "ID_reviewer": 28,
-        "ID_under_review": 6135,
-        "review": "It would be nice to have more orientation towards getting things done. It seems like there is a historical tendency towards not taking action, or so it seems."
-    },
-    {
-        "ID_reviewer": 59073,
-        "ID_under_review": 6135,
-        "review": "[ИМЯ] is able to work constructively in a team, focused on achieving results,open to dialogue and searching for effective solutions"
-    },
-    {
-        "ID_reviewer": 475,
-        "ID_under_review": 6135,
-        "review": "One of the best programmers, also a great person who is underpaid and deserves a salary increase."
+        "ID_reviewer": 1,
+        "ID_under_review": 2,
+        "review": "Он очень старательный и трудолюбивый"
     }
 ]
