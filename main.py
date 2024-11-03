@@ -32,7 +32,6 @@ app.include_router(api_router)
 async def on_startup():
     logger.success('Application startup complete at {time}', time=datetime.now(tz=timezone.utc))
 
-
 if __name__ == '__main__':
     uvicorn.run('main:app', host=str(Config.host), port=Config.port, reload=True)
 
