@@ -1,0 +1,124 @@
+body {
+    background-color: #0D0D22;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Выравнивание по верхнему краю */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    margin-top: 20px; /* Отступ сверху для заголовка */
+}
+
+h1 {
+    font-family: 'Istok Web', sans-serif; /* Применение шрифта Istok Web */
+    font-size: 40px; /* Размер шрифта 40 пикселей */
+    margin: 0; /* Убираем отступы */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+
+/* Новый контейнер для форм */
+.form-container {
+    display: flex;
+    justify-content: space-around; /* Раздвигает формы по краям контейнера */
+    align-items: stretch; /* Выравнивание по высоте */
+    margin-bottom: 30px; /* Отступ снизу */
+    width: 70%; /* Убедитесь, что контейнер занимает всю ширину */
+}
+
+form {
+    background-color: transparent; /* Прозрачный фон для форм */
+    width: 300px; /* Ширина формы */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px; /* Отступы по бокам для создания пространства между формами */
+}
+
+input[type="text"] {
+    margin-bottom: 10px; /* Отступ снизу для текстового поля */
+    padding: 23px; /* Внутренний отступ */
+    border: 4px solid #3FCC71; /* Цвет рамки */
+    border-radius: 10px; /* Закругление углов */
+    width: 100%; /* Ширина текстового поля */
+    background-color: transparent; /* Прозрачный фон для текстового поля */
+    color: white; /* Цвет текста */
+}
+
+textarea {
+    margin-bottom: 10px; /* Отступ снизу для текстовой области */
+    padding-left: 20px;
+    padding-top: 20px ;
+    border: 4px solid #3FCC71; /* Цвет рамки */
+    border-radius: 10px; /* Закругление углов */
+    width: 100%; /* Ширина текстовой области */
+    background-color: transparent; /* Прозрачный фон для текстовой области */
+    color: white; /* Цвет текста */
+    max-height: 100px; /* Максимальная высота поля ввода */
+    overflow-y: auto; /* Добавляет вертикальную полосу прокрутки при переполнении */
+    resize: none; /* Запрещает изменение размера поля ввода */
+    line-height: 1.5; /* Установите нормальную высоту строки */
+    box-sizing: border-box; /* Учитывает отступы и границы в ширине и высоте */
+}
+
+label {
+    color: white; /* Цвет текста для метки */
+    margin-top: 10px; /* Отступ сверху для метки */
+}
+
+button {
+    padding: 10px; /* Увеличиваем внутренние отступы для улучшения высоты кнопки */
+    border: 4px solid #3FCC71; /* Цвет рамки кнопки */
+    border-radius: 10px; /* Закругление углов кнопки */
+    background-color: #3FCC71; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    cursor: pointer; /* Указатель при наведении */
+    width: 300px; /* Ширина кнопки, равная ширине форм */
+    font-family: 'Istok Web', sans-serif; /* Применение шрифта Istok Web */
+    font-size: 16px; /* Размер шрифта для кнопки */
+    height: 70px; /* Увеличиваем высоту кнопки */
+    line-height: 1.5; /* Устанавливаем высоту строки для центрирования текста */
+}
+
+.output {
+    border: 4px solid #3FCC71; /* Цветная рамка */
+    padding: 10px; /* Внутренний отступ */
+    border-radius: 8px; /* Закругление углов */
+    width: 1000px; /* Ширина блока */
+    text-align: left; /* Выравнивание текста по центру */
+    min-height: 20px; /* Минимальная высота */
+    transition: height 0.3s ease; /* Плавный переход высоты */
+    overflow: auto; /* Добавляет полосу прокрутки при переполнении */
+    white-space: pre-wrap; /* Позволяет переносить текст на новую строку */
+    word-wrap: break-word; /* Переносит длинные слова на новую строку */
+    margin-bottom: 50px;
+}
+
+/* ... ваш существующий CSS ... */
+
+.diamonds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Чтобы ромбики не мешали кликать на другие элементы */
+}
+
+.diamond {
+    position: absolute;
+    background-color: #3FCC71;
+    /* Цвет ромбиков */
+    transform: rotate(45deg);
+    /* Поворот на 45 градусов для создания ромба */
+}
