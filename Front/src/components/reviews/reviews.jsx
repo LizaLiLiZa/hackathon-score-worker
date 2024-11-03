@@ -25,11 +25,39 @@ function Reviews() {
         }
     };
 
-    const handleSubmit = () => {
-        // Обработка ввода пользователя и критериев
-        // ... (ваш код для обработки данных)
-        
-        
+    const handleSubmit = async () => {
+        try {
+            // Запрос на отправку значений
+            const response = await fetch('http://127.0.0.1:8000/', { // Замените '/api/send-data' на ваш реальный URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idFrom: userInput,
+                    categories: criteriaInput,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при отправке данных');
+            }
+
+    // Получение отзыва с сервера
+            const data = await fetch('http://127.0.0.1:8000/', { // Замените '/api/get-text' на ваш реальный URL
+        method: 'GET',
+            });
+
+            if (!data.ok) {
+                throw new Error('Ошибка при получении текста');
+            }
+
+            const text = await data.text();
+            setOutput(text);
+        } catch (error) {
+            console.error('Ошибка:', error);
+            setOutput('Произошла ошибка. Попробуйте снова.');
+        }
     };
 
     return (
