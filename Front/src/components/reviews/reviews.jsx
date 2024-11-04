@@ -8,7 +8,7 @@ function Reviews() {
     const [criteriaInput, setCriteriaInput] = useState('');
     const [useDefaultData, setUseDefaultData] = useState(false);
     const [output, setOutput] = useState('');
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
 
     const handleUserInput = (event) => {
         setUserInput(event.target.value);
@@ -19,29 +19,20 @@ function Reviews() {
     };
 
     const toggleInput = () => {
-        setUseDefaultData(!useDefaultData);
-        if (useDefaultData) {
-            setCriteriaInput('');
-        } else {
+        setUseDefaultData(prevState => !prevState);
+        if (!useDefaultData) {
             setCriteriaInput('');
         }
     };
 
-    
     // Запрос на отправку значений
     const handleSubmit = async () => {
         try {
-
-            const url = `http://127.0.0.1:8000/categories/${userInput}/${criteriaInput}`; // Используем encodeURIComponent для кодирования критериев
+            const url = `http://127.0.0.1:8000/categories/${userInput}/${criteriaInput}/${useDefaultData}`;
 
             const response = await axios.get(url);
-            // await fetch(url, { // Используем GET-запрос
-            //     method: 'GET',
-            // })
-                    // .then((response) => response.json());
-            
             console.log(response.data);
-            if (!response.status === 200) {
+            if (response.status !== 200) {
                 throw new Error('Ошибка при отправке данных');
             }
             setOutput(response.data);
@@ -54,9 +45,9 @@ function Reviews() {
     return (
         <div className="app">
             <header>
-                <h1 className="header-title">INNOGLOBALHACK</h1> {/* Добавлено имя */}
+                <h1 className="header-title">INNOGLOBALHACK</h1>
             </header>
-            <div className="content"> {/* Добавлено для центрирования */}
+            <div className="content">
                 <img src={Kittens} alt="Векторное изображение" />
                 <div className="form-container">
                     <form id="userInputForm" onSubmit={(event) => event.preventDefault()}>
@@ -75,6 +66,7 @@ function Reviews() {
                             placeholder="Введите критерии"
                             value={criteriaInput}
                             onChange={handleCriteriaInput}
+                            disabled={useDefaultData}
                         />
                         <label>
                             <input
@@ -95,6 +87,7 @@ function Reviews() {
 
                 <div className="output">{output}</div>
             </div>
+
             <div className="diamonds"> {/* Контейнер для ромбиков */}
                 <div className="diamond" style={{ top: '5%', left: '5%', width: '20px', height: '20px' }}></div>
                 <div className="diamond" style={{ top: '15%', left: '10%', width: '15px', height: '15px' }}></div>
