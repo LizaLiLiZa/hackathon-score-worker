@@ -24,21 +24,18 @@ function Reviews() {
     if (useDefaultData) {
       setCriteriaInput("");
     } else {
-      setCriteriaInput("");
+      setCriteriaInput("false");
     }
   };
 
   // Запрос на отправку значений
   const handleSubmit = async () => {
     try {
-      const url = `http://127.0.0.1:8000/categories/${userInput}/${criteriaInput}`; // Используем encodeURIComponent для кодирования критериев
+      const url = `http://127.0.0.1:8000/categories/${userInput}/${useDefaultData}${useDefaultData == null ? "/" + criteriaInput : ""}`; // Используем encodeURIComponent для кодирования критериев
 
       const response = await axios.get(url);
 
       console.log(response.data);
-      if (!response.status === 200) {
-        throw new Error("Ошибка при отправке данных");
-      }
       setOutput(response.data);
     } catch (e) {
       toast.error("Ошибка при получении отзыва");
