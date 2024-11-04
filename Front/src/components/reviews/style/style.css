@@ -11,6 +11,7 @@ body {
 }
 
 header {
+    margin-left: 30%;
     margin-top: 20px; /* Отступ сверху для заголовка */
 }
 
@@ -21,6 +22,7 @@ h1 {
 }
 
 img {
+    margin-left: 26%;
     max-width: 100%;
     height: auto;
     margin-bottom: 50px;
@@ -32,7 +34,8 @@ img {
     justify-content: space-around; /* Раздвигает формы по краям контейнера */
     align-items: stretch; /* Выравнивание по высоте */
     margin-bottom: 30px; /* Отступ снизу */
-    width: 70%; /* Убедитесь, что контейнер занимает всю ширину */
+    width: 100%; /* Убедитесь, что контейнер занимает всю ширину */
+    margin-left: 15%;
 }
 
 form {
@@ -87,6 +90,8 @@ button {
     font-size: 16px; /* Размер шрифта для кнопки */
     height: 70px; /* Увеличиваем высоту кнопки */
     line-height: 1.5; /* Устанавливаем высоту строки для центрирования текста */
+    margin-left: 35%;
+    margin-bottom: 30px;
 }
 
 .output {

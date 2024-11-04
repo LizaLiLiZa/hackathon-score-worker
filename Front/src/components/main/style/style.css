@@ -32,7 +32,7 @@ img {
     justify-content: space-around; /* Раздвигает формы по краям контейнера */
     align-items: stretch; /* Выравнивание по высоте */
     margin-bottom: 30px; /* Отступ снизу */
-    width: 70%; /* Убедитесь, что контейнер занимает всю ширину */
+    width: 80%; /* Убедитесь, что контейнер занимает всю ширину */
 }
 
 form {
@@ -41,7 +41,8 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 10px; /* Отступы по бокам для создания пространства между формами */
+    padding: 20px; /* Отступы по бокам для создания пространства между формами */
+    margin-right: 1%;
 }
 
 input[type="text"] {
@@ -101,4 +102,8 @@ button {
     white-space: pre-wrap; /* Позволяет переносить текст на новую строку */
     word-wrap: break-word; /* Переносит длинные слова на новую строку */
     margin-bottom: 50px;
+}
+
+.diamonds{
+    margin-left: 80%;
 }

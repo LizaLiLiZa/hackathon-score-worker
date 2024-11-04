@@ -80,10 +80,10 @@ function Reviews() {
                         </label>
                     </form>
                 </div>
-
                 <button id="submitButton" onClick={handleSubmit}>
                     Отправить
                 </button>
+
 
                 <div className="output">{output}</div>
             </div>
@@ -101,14 +101,7 @@ function Reviews() {
                 <div className="diamond" style={{ top: '95%', left: '5%', width: '30px', height: '30px' }}></div>
                 <div className="diamond" style={{ top: '5%', left: '5%', width: '20px', height: '20px' }}></div>
                 <div className="diamond" style={{ top: '15%', left: '15%', width: '15px', height: '15px' }}></div>
-                <div className="diamond" style={{ top: '25%', left: '10%', width: '25px', height: '25px' }}></div>
-                <div className="diamond" style={{ top: '35%', left: '5%', width: '10px', height: '10px' }}></div>
                 <div className="diamond" style={{ top: '45%', left: '10%', width: '30px', height: '30px' }}></div>
-                <div className="diamond" style={{ top: '55%', left: '5%', width: '20px', height: '20px' }}></div>
-                <div className="diamond" style={{ top: '65%', left: '10%', width: '15px', height: '15px' }}></div>
-                <div className="diamond" style={{ top: '75%', left: '5%', width: '25px', height: '25px' }}></div>
-                <div className="diamond" style={{ top: '85%', left: '10%', width: '10px', height: '10px' }}></div>
-                <div className="diamond" style={{ top: '95%', left: '5%', width: '30px', height: '30px' }}></div>
                 <div className="diamond" style={{ top: '10%', left: '20%', width: '18px', height: '18px' }}></div>
                 <div className="diamond" style={{ top: '20%', left: '25%', width: '22px', height: '22px' }}></div>
                 <div className="diamond" style={{ top: '30%', left: '15%', width: '12px', height: '12px' }}></div>
