@@ -58,3 +58,9 @@ def evaluate_reviews_with_llm(prompt):
         return response.json()
     else:
         return f"Error: {response.status_code} - {response.text}"
+
+
+def is_valid_russian_text(text):
+    """Проверяет, содержатся ли в строке символы кроме кириллических, цифр, пробелов и пунктуации"""
+    pattern = r'^[А-Яа-яЁё0-9\s\-;,.]+$'
+    return bool(re.fullmatch(pattern, text))

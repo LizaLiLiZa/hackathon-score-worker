@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi import status
 
 import json
+import re
 import datetime
 
 # db
@@ -33,6 +34,7 @@ from core. services.prompts.all_prompts import prepare_prompt
 """
 from core.services.moduls.modul import short_review
 from core.services.moduls.modul import evaluate_reviews_with_llm
+from core.services.moduls.modul import is_valid_russian_text
 
 """
     Подключение к модулям
@@ -93,6 +95,10 @@ def post_comment(comment: Get_Comment):
     comment = filtr_com(comment)[0]
     prompt = short_prompt(comment)
     
+    if is_valid_russian_text(comment):
+        print("Присутствуют не кириллические символы")
+        raise HTTPException(status_code=400, detail="В отзыве присутствуют не кириллические символы.")
+
     try:
         review_response = short_review(prompt)
         print(type(review_response))
