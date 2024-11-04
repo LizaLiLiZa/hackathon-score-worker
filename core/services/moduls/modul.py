@@ -10,6 +10,10 @@ class Review(BaseModel):
     ID_under_review: int
     review: str
 
+
+"""
+    Модуль для формирования мнений
+"""
 def short_review(prompt):
     url = "https://vk-scoreworker-case-backup.olymp.innopolis.university/generate"
 
@@ -36,6 +40,9 @@ def short_review(prompt):
         return f"Error: {response.status_code} - {response.text}"
 
 
+"""
+    Модуль для формирования конечного результата
+"""
 def evaluate_reviews_with_llm(prompt):
     url = "https://vk-scoreworker-case-backup.olymp.innopolis.university/generate"
     data = {
