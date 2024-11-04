@@ -59,7 +59,7 @@ def filtr_com(reviews):
         reviewer_id = review["ID_reviewer"]
         if reviewer_id in merged_reviews:
             # Объединяем отзывы, добавляя новый текст к существующему
-            merged_reviews[reviewer_id]["review"] += "\n" + review["review"] + " - " + str(review["data"])
+            merged_reviews[reviewer_id]["review"] += "\n" + review["review"] + " - " + str(review["date"])
         else:
             # Если ID_reviewer еще не встречался, добавляем отзыв в словарь
             merged_reviews[reviewer_id] = review
