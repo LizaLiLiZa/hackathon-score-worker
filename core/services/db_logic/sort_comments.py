@@ -6,6 +6,11 @@ from core.services.prompts.all_prompts import short_prompt
 from core.services.moduls.modul import short_review
 
 def add_sort_comments_db(id_to, id_from, gen_comm):
+    """
+    Обновляет общий отзыв одного сотрудника на другого
+    или добавляет новый общий отзыв
+    """
+    
     if not os.path.exists("./core/db/sort_comments.json"):
         with open("./core/db/sort_comments.json", "w", encoding="utf-8") as f:
             json.dump([], f)
@@ -29,6 +34,10 @@ def add_sort_comments_db(id_to, id_from, gen_comm):
 
 
 def get_comments_under_review_db(id_to):
+    """
+    Возвращает все отзывы о человеке
+    """
+    
     if not os.path.exists("./core/db/sort_comments.json"):
         return [] 
     with open("./core/db/sort_comments.json", "r+", encoding="utf-8") as f:
