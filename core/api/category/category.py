@@ -46,7 +46,7 @@ router = APIRouter()
 
 
 """
-    Возвращает все записи 
+    Апи возвращает все записи 
 """
 @router.get("/categories")
 def get_info():
@@ -54,11 +54,18 @@ def get_info():
     return all_comments_data
 
 
-
+"""
+    Апи генерирует отзыв о пользователе
+"""
 @router.get("/categories/{id_to}/{com}/{Identificator}")
 def get_comments(id_to: int, com: str, Identificator: bool):
+     
+
+    # автоматическое дабовление комментариев
     if Identificator == True or com == "" or com == " ":
         com = "1. Командная работа /n2. Вежливотсь /n3. Отзывчивость"
+
+    # поиск и формирование мнений
     comments_data = get_comments_under_review_db(id_to)
     data, users = get_ID_under_review_comments(id_to)
     if len(comments_data) == 0 or len(comments_data) != len(users):
@@ -82,17 +89,27 @@ def get_comments(id_to: int, com: str, Identificator: bool):
             except Exception as e:
                 print(f"Произошла ошибка: {e}")
                 raise HTTPException(status_code=500, detail="Невозможно преобразовать данные")
+            
+    # Формирование конечного отзыва
     prompt = prepare_prompt(comments_data, com)
     return evaluate_reviews_with_llm(prompt)
 
 
+
+"""
+    Апи создает запись об отзыве
+"""
 @router.post("/new-comment")
 def post_comment(comment: Get_Comment):
+
+    # добовление в бд всех комментариев
     comment = dict(comment)
     comment["date"] = datetime.date.today().strftime("%m/%d/%Y")
     add_all_comments(comment)
     comment = get_ID_review_comment(comment["ID_under_review"], comment["ID_reviewer"])
     comment = filtr_com(comment)[0]
+
+    # пересчитывание мнения
     prompt = short_prompt(comment)
     
     if is_valid_russian_text(comment):
@@ -101,9 +118,7 @@ def post_comment(comment: Get_Comment):
 
     try:
         review_response = short_review(prompt)
-        print(type(review_response))
         if review_response == "Нейтральный отзыв." or review_response == "Нейтральная оценка":
-            print(0)
             raise HTTPException(status_code=422, detail="Некорректные данные: ожидается объективный отзыв, оценивающий некоторые качества сотрюдника, которые могут повлиять на рабочий процесс.")
         review_response = {"ID_reviewer": comment["ID_reviewer"], "ID_under_review": comment["ID_under_review"], "review": review_response}
         add_sort_comments_db(review_response["ID_reviewer"], review_response["ID_under_review"], review_response["review"])
@@ -111,4 +126,4 @@ def post_comment(comment: Get_Comment):
     except Exception as e:
         print(f"Произошла ошибка: {e}")
         raise HTTPException(status_code=500, detail="Невозможно преобразовать данные")
-    return review_response
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content={"detail": "Данные добавлены"})
