@@ -1,3 +1,8 @@
+
+
+"""
+    Критерий к запросу модуля short_review
+"""
 def short_prompt(review):
     prompt = 'Make a short summary of the reviews. If the date of writing of the text is indicated, then the text written later has the greatest importance. \
         The short summary should characterize the person`s soft skills and be shorter than the original review. If the review already clearly characterizes the \
@@ -17,6 +22,10 @@ def short_prompt(review):
     #prompt+= f"ID_reviewer: {review['ID_reviewer']}, ID_under_review: {review['ID_under_review']}"
     return prompt
 
+
+"""
+    Критерий к запросу модуля evaluate_reviews_with_llm
+"""
 def prepare_prompt(reviews, com):
     prompt = "Here are some reviews about an employee:\n\n"
     for i, review in enumerate(reviews, start=1):
