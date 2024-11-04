@@ -27,6 +27,8 @@ from core.services.db_logic.sort_comments import add_sort_comments_db
 """
 from core. services.prompts.all_prompts import short_prompt
 from core. services.prompts.all_prompts import prepare_prompt
+from core.services.prompts.all_prompts import grade_prompt
+from core.services.prompts.all_prompts import criteria_prompt
 
 
 """
@@ -34,12 +36,17 @@ from core. services.prompts.all_prompts import prepare_prompt
 """
 from core.services.moduls.modul import short_review
 from core.services.moduls.modul import evaluate_reviews_with_llm
-from core.services.moduls.modul import is_valid_russian_text
+from core.services.moduls.modul import criteria_review
+
 
 """
-    Подключение к модулям
+    Подключение к моделям
 """
 from core.models.Get_comment import Get_Comment
+
+
+"""Подключение логики валидации"""
+from core.services.validation.validation import is_valid_russian_text
 
 
 router = APIRouter()
@@ -61,10 +68,6 @@ def get_info():
 def get_comments(id_to: int, com: str, Identificator: bool):
      
 
-    # автоматическое дабовление комментариев
-    if Identificator == True or com == "" or com == " ":
-        com = "1. Командная работа /n2. Вежливотсь /n3. Отзывчивость"
-
     # поиск и формирование мнений
     comments_data = get_comments_under_review_db(id_to)
     data, users = get_ID_under_review_comments(id_to)
@@ -72,15 +75,16 @@ def get_comments(id_to: int, com: str, Identificator: bool):
         if len(data) == 0:
             raise HTTPException(status_code=404, detail="Нет данных в бд")
         filtered_data = filtr_com(data)
-
-        print()
         for comment in filtered_data:
-            print(comment)
-            print()
-            prompt = short_prompt(comment)            
+            prompt = short_prompt(comment)          
             try:
                 
                 review_response = short_review(prompt)
+                while not is_valid_russian_text(review_response):
+                    review_response = short_review(prompt)
+                    
+                print(review_response)
+                print()
                 review_response = {"ID_reviewer": comment["ID_reviewer"], "ID_under_review": comment["ID_under_review"], "review": review_response}
 
                 comments_data.append(review_response)
@@ -89,7 +93,19 @@ def get_comments(id_to: int, com: str, Identificator: bool):
             except Exception as e:
                 print(f"Произошла ошибка: {e}")
                 raise HTTPException(status_code=500, detail="Невозможно преобразовать данные")
-            
+   
+    # автоматическое дабовление комментариев
+    if Identificator:
+        prompt = criteria_prompt(comments_data)
+        review_response = criteria_review(prompt)
+        while not is_valid_russian_text(review_response):
+            review_response = criteria_review(prompt)
+        prompt = prepare_prompt(comments_data, review_response)
+        review_response = criteria_review(prompt)
+        prompt = prepare_prompt(comments_data, review_response)
+        return review_response
+
+
     # Формирование конечного отзыва
     prompt = prepare_prompt(comments_data, com)
     return evaluate_reviews_with_llm(prompt)
@@ -111,13 +127,11 @@ def post_comment(comment: Get_Comment):
 
     # пересчитывание мнения
     prompt = short_prompt(comment)
-    
-    if is_valid_russian_text(comment):
-        print("Присутствуют не кириллические символы")
-        raise HTTPException(status_code=400, detail="В отзыве присутствуют не кириллические символы.")
 
     try:
         review_response = short_review(prompt)
+        while not is_valid_russian_text(review_response):
+            review_response = short_review(prompt)
         if review_response == "Нейтральный отзыв." or review_response == "Нейтральная оценка":
             raise HTTPException(status_code=422, detail="Некорректные данные: ожидается объективный отзыв, оценивающий некоторые качества сотрюдника, которые могут повлиять на рабочий процесс.")
         review_response = {"ID_reviewer": comment["ID_reviewer"], "ID_under_review": comment["ID_under_review"], "review": review_response}
