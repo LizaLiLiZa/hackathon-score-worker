@@ -97,19 +97,17 @@ def get_comments(id_to: int, com: str, Identificator: bool):
     # автоматическое дабовление комментариев
     if Identificator:
         prompt = criteria_prompt(comments_data)
-        review_response = criteria_review(prompt)
-        while not is_valid_russian_text(review_response):
-            review_response = criteria_review(prompt)
-        prompt = prepare_prompt(comments_data, review_response)
-        review_response = criteria_review(prompt)
-        prompt = prepare_prompt(comments_data, review_response)
-        return review_response
-
-
+        com = criteria_review(prompt)
+        while not is_valid_russian_text(com):
+            com = criteria_review(prompt)
     # Формирование конечного отзыва
     prompt = prepare_prompt(comments_data, com)
-    return evaluate_reviews_with_llm(prompt)
+    review_response = criteria_review(prompt)
+    prompt = prepare_prompt(comments_data, review_response)
+    return review_response
 
+
+    
 
 
 """
@@ -132,12 +130,13 @@ def post_comment(comment: Get_Comment):
         review_response = short_review(prompt)
         while not is_valid_russian_text(review_response):
             review_response = short_review(prompt)
-        if review_response == "Нейтральный отзыв." or review_response == "Нейтральная оценка":
-            raise HTTPException(status_code=422, detail="Некорректные данные: ожидается объективный отзыв, оценивающий некоторые качества сотрюдника, которые могут повлиять на рабочий процесс.")
+        print(comment["ID_reviewer"], comment["ID_under_review"])
+        if comment["ID_reviewer"] == comment["ID_under_review"] or review_response == "нейтрально." or review_response == "нейтрально":
+            return HTTPException(status_code=422, detail="Некорректные данные: ожидается объективный отзыв, оценивающий некоторые качества сотрюдника, которые могут повлиять на рабочий процесс.")
         review_response = {"ID_reviewer": comment["ID_reviewer"], "ID_under_review": comment["ID_under_review"], "review": review_response}
         add_sort_comments_db(review_response["ID_reviewer"], review_response["ID_under_review"], review_response["review"])
         print(review_response)
     except Exception as e:
         print(f"Произошла ошибка: {e}")
-        raise HTTPException(status_code=500, detail="Невозможно преобразовать данные")
+        return HTTPException(status_code=500, detail="Невозможно преобразовать данные")
     return JSONResponse(status_code=status.HTTP_201_CREATED, content={"detail": "Данные добавлены"})
