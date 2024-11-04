@@ -24,6 +24,7 @@ Windows:
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+pip install requests
 
 python main.py
 ```
@@ -31,8 +32,10 @@ python main.py
 Linux:
 ```bash
 python -m venv venv
+sudo chmod +x venv/bin/activate
 venv/bin/activate
 venv/bin/pip install -r requirements.txt
+venv/bin/pip install requests
 
 venv/bin/python main.py
 ```
